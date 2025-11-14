@@ -1,68 +1,65 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import axios from 'axios'
-import './Wallet.css'
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "./Wallet.css";
 
-const API_BASE = 'http://localhost:3000/api'
+const API_BASE = "http://localhost:3002";
 
 function Wallet({ user, onLogout }) {
-  const [balance, setBalance] = useState(null)
-  const [topupAmount, setTopupAmount] = useState('')
-  const [loading, setLoading] = useState(false)
-  const [message, setMessage] = useState('')
+  const [balance, setBalance] = useState(null);
+  const [topupAmount, setTopupAmount] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
-    fetchBalance()
-  }, [user])
+    fetchBalance();
+  }, [user]);
 
   const fetchBalance = async () => {
     try {
-      const token = localStorage.getItem('token')
+      const token = localStorage.getItem("token");
       const headers = {
-        'Authorization': `Bearer ${token}`,
-        'x-user-id': user.id
-      }
-      const response = await axios.get(`${API_BASE}/wallets/balance`, { headers })
-      setBalance(response.data.balance)
+        Authorization: `Bearer ${token}`,
+        "x-user-id": String(user.id),
+      };
+      // call via gateway so routing is consistent in dev
+      const response = await axios.get(`http://localhost:3000/api/wallets/balance`, { headers });
+      setBalance(response.data.balance);
     } catch (err) {
-      console.error('Error fetching balance:', err)
-      setMessage('Error loading balance')
+      console.error("Error fetching balance:", err);
+      setMessage("Error loading balance");
     }
-  }
+  };
 
   const handleTopup = async (e) => {
-    e.preventDefault()
-    const amount = parseFloat(topupAmount)
-    
+    e.preventDefault();
+    const amount = parseFloat(topupAmount);
+
     if (!amount || amount <= 0) {
-      setMessage('Please enter a valid amount')
-      return
+      setMessage("Please enter a valid amount");
+      return;
     }
 
-    setLoading(true)
-    setMessage('')
+    setLoading(true);
+    setMessage("");
 
     try {
-      const token = localStorage.getItem('token')
+      const token = localStorage.getItem("token");
       const headers = {
-        'Authorization': `Bearer ${token}`,
-        'x-user-id': user.id
-      }
-      const response = await axios.post(
-        `${API_BASE}/wallets/topup`,
-        { amount },
-        { headers }
-      )
-      setBalance(response.data.new_balance)
-      setTopupAmount('')
-      setMessage('Top up successful!')
-      setTimeout(() => setMessage(''), 3000)
+        Authorization: `Bearer ${token}`,
+        "x-user-id": String(user.id),
+      };
+      const response = await axios.post(`http://localhost:3000/api/wallets/topup`, { amount }, { headers });
+      setBalance(response.data.new_balance);
+      setTopupAmount("");
+      setMessage("Top up successful!");
+      setTimeout(() => setMessage(""), 3000);
     } catch (err) {
-      setMessage(err.response?.data?.error || 'Top up failed')
+      setMessage(err.response?.data?.error || "Top up failed");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="wallet-page">
@@ -73,7 +70,9 @@ function Wallet({ user, onLogout }) {
             <Link to="/dashboard">Dashboard</Link>
             <Link to="/wallet">Wallet</Link>
             <Link to="/transactions">Transactions</Link>
-            <button onClick={onLogout} className="logout-btn">Logout</button>
+            <button onClick={onLogout} className="logout-btn">
+              Logout
+            </button>
           </div>
         </div>
       </nav>
@@ -84,9 +83,7 @@ function Wallet({ user, onLogout }) {
         <div className="wallet-card">
           <div className="wallet-header">
             <h3>Balance</h3>
-            <div className="balance-display">
-              Rp {balance?.toLocaleString('id-ID') || '0'}
-            </div>
+            <div className="balance-display">Rp {balance?.toLocaleString("id-ID") || "0"}</div>
           </div>
 
           <div className="topup-section">
@@ -94,23 +91,11 @@ function Wallet({ user, onLogout }) {
             <form onSubmit={handleTopup}>
               <div className="input-group">
                 <span className="currency">Rp</span>
-                <input
-                  type="number"
-                  value={topupAmount}
-                  onChange={(e) => setTopupAmount(e.target.value)}
-                  placeholder="Enter amount"
-                  min="1"
-                  step="1000"
-                  required
-                />
+                <input type="number" value={topupAmount} onChange={(e) => setTopupAmount(e.target.value)} placeholder="Enter amount" min="1" step="1000" required />
               </div>
-              {message && (
-                <div className={`message ${message.includes('successful') ? 'success' : 'error'}`}>
-                  {message}
-                </div>
-              )}
+              {message && <div className={`message ${message.includes("successful") ? "success" : "error"}`}>{message}</div>}
               <button type="submit" disabled={loading} className="topup-btn">
-                {loading ? 'Processing...' : 'Top Up'}
+                {loading ? "Processing..." : "Top Up"}
               </button>
             </form>
           </div>
@@ -133,10 +118,7 @@ function Wallet({ user, onLogout }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Wallet
-
-
-
+export default Wallet;
