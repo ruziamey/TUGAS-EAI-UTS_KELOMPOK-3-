@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Wallet.css";
+import swiftPayLogo from "../assets/images/swiftPay.jpg";
 
 const API_BASE = "http://localhost:3002";
 
@@ -65,11 +66,20 @@ function Wallet({ user, onLogout }) {
     <div className="wallet-page">
       <nav className="navbar">
         <div className="nav-content">
-          <h1>E-Wallet</h1>
+          <div className="nav-logo">
+            <img src={swiftPayLogo} alt="SwiftPay" className="navbar-logo" />
+            <h1>SwiftPay</h1>
+          </div>
           <div className="nav-links">
-            <Link to="/dashboard">Dashboard</Link>
-            <Link to="/wallet">Wallet</Link>
-            <Link to="/transactions">Transactions</Link>
+            <Link to="/dashboard" className="nav-link">
+              Dashboard
+            </Link>
+            <Link to="/wallet" className="nav-link active">
+              Wallet
+            </Link>
+            <Link to="/transactions" className="nav-link">
+              Transactions
+            </Link>
             <button onClick={onLogout} className="logout-btn">
               Logout
             </button>

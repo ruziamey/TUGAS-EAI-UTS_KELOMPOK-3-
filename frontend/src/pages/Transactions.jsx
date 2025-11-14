@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import "./Transactions.css";
+import swiftPayLogo from "../assets/images/swiftPay.jpg";
 
 // Call payment service via gateway so CORS and proxying match development setup
 const API_BASE = "http://localhost:3003";
@@ -102,11 +103,20 @@ function Transactions({ user, onLogout }) {
     <div className="transactions-page">
       <nav className="navbar">
         <div className="nav-content">
-          <h1>E-Wallet</h1>
+          <div className="nav-logo">
+            <img src={swiftPayLogo} alt="SwiftPay" className="navbar-logo" />
+            <h1>SwiftPay</h1>
+          </div>
           <div className="nav-links">
-            <Link to="/dashboard">Dashboard</Link>
-            <Link to="/wallet">Wallet</Link>
-            <Link to="/transactions">Transactions</Link>
+            <Link to="/dashboard" className="nav-link">
+              Dashboard
+            </Link>
+            <Link to="/wallet" className="nav-link">
+              Wallet
+            </Link>
+            <Link to="/transactions" className="nav-link active">
+              Transactions
+            </Link>
             <button onClick={onLogout} className="logout-btn">
               Logout
             </button>

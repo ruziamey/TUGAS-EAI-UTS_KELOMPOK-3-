@@ -1,6 +1,86 @@
 .transactions-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.navbar {
+  background: linear-gradient(135deg, #0066cc, #00cc88);
+  padding: 15px 0;
+  box-shadow: 0 4px 20px rgba(0, 102, 204, 0.3);
+}
+
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.logo-icon {
+  font-size: 32px;
+}
+
+.navbar-logo {
+  width: 50px;
+  height: auto;
+}
+
+.nav-content h1 {
+  color: white;
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 14px;
+  padding: 8px 0;
+  border-bottom: 3px solid transparent;
+}
+
+.nav-link:hover {
+  opacity: 0.8;
+}
+
+.nav-link.active {
+  border-bottom-color: #ccff00;
+  color: #ccff00;
+}
+
+.logout-btn {
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 14px;
+}
+
+.logout-btn:hover {
+  background: white;
+  color: #0066cc;
 }
 
 .transactions-content {
@@ -13,80 +93,95 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
 .transactions-header h2 {
-  color: white;
-  font-size: 32px;
+  color: #0066cc;
+  font-size: 36px;
+  font-weight: 700;
 }
 
 .new-payment-btn {
-  padding: 12px 24px;
-  background: white;
-  color: #667eea;
+  padding: 13px 28px;
+  background: linear-gradient(135deg, #0066cc, #00cc88);
+  color: white;
   border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: bold;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.3s;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
 }
 
 .new-payment-btn:hover {
-  background: #667eea;
-  color: white;
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0, 102, 204, 0.4);
+}
+
+.new-payment-btn:active {
+  transform: translateY(-1px);
 }
 
 .payment-form-card {
   background: white;
-  padding: 30px;
+  padding: 35px;
   border-radius: 15px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  margin-bottom: 30px;
+  box-shadow: 0 12px 35px rgba(0, 102, 204, 0.15);
+  margin-bottom: 35px;
+  border-top: 5px solid #0066cc;
 }
 
 .payment-form-card h3 {
-  color: #333;
-  margin-bottom: 20px;
+  color: #0066cc;
+  margin-bottom: 25px;
   font-size: 24px;
+  font-weight: 700;
 }
 
 .payment-form-card form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
 }
 
 .payment-form-card input {
-  padding: 12px;
+  padding: 14px;
   border: 2px solid #e0e0e0;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 14px;
-  transition: border-color 0.3s;
+  transition: all 0.3s;
+  font-family: inherit;
 }
 
 .payment-form-card input:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #0066cc;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
 }
 
 .submit-payment-btn {
-  padding: 12px;
-  background: #667eea;
+  padding: 14px;
+  background: linear-gradient(135deg, #0066cc, #00cc88);
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   font-size: 16px;
-  font-weight: bold;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s;
+  margin-top: 10px;
+  box-shadow: 0 6px 20px rgba(0, 102, 204, 0.3);
 }
 
 .submit-payment-btn:hover:not(:disabled) {
-  background: #5568d3;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(0, 102, 204, 0.4);
+}
+
+.submit-payment-btn:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .submit-payment-btn:disabled {
@@ -96,21 +191,23 @@
 
 .transactions-list-card {
   background: white;
-  padding: 30px;
+  padding: 35px;
   border-radius: 15px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 12px 35px rgba(0, 102, 204, 0.15);
+  border-top: 5px solid #00cc88;
 }
 
 .transactions-list-card h3 {
-  color: #333;
-  margin-bottom: 20px;
+  color: #0066cc;
+  margin-bottom: 25px;
   font-size: 24px;
+  font-weight: 700;
 }
 
 .transactions-list {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 12px;
 }
 
 .transaction-item {
@@ -119,14 +216,15 @@
   gap: 20px;
   align-items: center;
   padding: 20px;
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #f8f9fa, #f0f5ff);
   border-radius: 12px;
-  border-left: 4px solid #667eea;
-  transition: transform 0.2s;
+  border-left: 4px solid #0066cc;
+  transition: all 0.3s;
 }
 
 .transaction-item:hover {
   transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
 }
 
 .tx-main-info {
@@ -136,13 +234,14 @@
 }
 
 .tx-type-badge {
-  background: #667eea;
+  background: linear-gradient(135deg, #0066cc, #00cc88);
   color: white;
-  padding: 6px 14px;
+  padding: 8px 16px;
   border-radius: 20px;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 700;
   white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 102, 204, 0.3);
 }
 
 .tx-details {
@@ -152,9 +251,9 @@
 }
 
 .tx-description {
-  font-weight: 600;
+  font-weight: 700;
   color: #333;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .tx-meta {
@@ -170,7 +269,7 @@
 
 .tx-amount {
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 700;
   text-align: right;
 }
 
@@ -183,53 +282,56 @@
 }
 
 .tx-status {
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: 20px;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 11px;
+  font-weight: 700;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .tx-status.completed {
   background: #d4edda;
   color: #155724;
+  border: 1px solid #28a745;
 }
 
 .tx-status.pending {
   background: #fff3cd;
   color: #856404;
+  border: 1px solid #ffc107;
 }
 
 .message {
-  padding: 12px;
-  border-radius: 8px;
+  padding: 14px 16px;
+  border-radius: 10px;
   text-align: center;
-  font-weight: 500;
+  font-weight: 600;
+  border-left: 4px solid transparent;
 }
 
 .message.success {
   background: #d4edda;
   color: #155724;
+  border-left-color: #28a745;
 }
 
 .message.error {
   background: #f8d7da;
   color: #721c24;
+  border-left-color: #dc3545;
 }
 
 .no-data {
   text-align: center;
   color: #999;
   padding: 40px;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 .loading {
   text-align: center;
-  color: white;
+  color: #0066cc;
   font-size: 20px;
   padding: 40px;
 }
-
-
-

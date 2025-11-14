@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
+import swiftPayLogo from "../assets/images/swiftPay.jpg";
 
 const API_BASE = "http://localhost:3001";
 
@@ -58,7 +59,10 @@ function Login({ onLogin }) {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h1>E-Wallet</h1>
+        <div className="logo-section">
+          <img src={swiftPayLogo} alt="SwiftPay" className="swiftpay-logo-img" />
+        </div>
+        <h1>SwiftPay</h1>
         <h2>Digital Payment Service</h2>
 
         <div className="toggle-buttons">
@@ -86,14 +90,6 @@ function Login({ onLogin }) {
             {loading ? "Loading..." : isLogin ? "Login" : "Register"}
           </button>
         </form>
-
-        <div className="demo-info">
-          <p>
-            <strong>Demo Accounts:</strong>
-          </p>
-          <p>Username: alice, bob, or charlie</p>
-          <p>Password: password123</p>
-        </div>
       </div>
     </div>
   );
