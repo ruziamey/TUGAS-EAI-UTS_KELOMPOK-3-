@@ -1,0 +1,30 @@
+{
+  "name": "tugas-uts-eae",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Monorepo wrapper for TUGAS-UTS-EAE (workspace aggregator)",
+  "workspaces": [
+    "database",
+    "frontend",
+    "gateway",
+    "services/*"
+  ],
+  "main": "trace-require.js",
+  "scripts": {
+    "start": "start-all.bat",
+    "start:linux": "sh start-all.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hanifirsadd/TUGAS-UTS-EAE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/hanifirsadd/TUGAS-UTS-EAE/issues"
+  },
+  "homepage": "https://github.com/hanifirsadd/TUGAS-UTS-EAE#readme"
+}
