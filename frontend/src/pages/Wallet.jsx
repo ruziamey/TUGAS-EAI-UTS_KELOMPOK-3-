@@ -24,7 +24,7 @@ function Wallet({ user, onLogout }) {
         "x-user-id": String(user.id),
       };
       // call via gateway so routing is consistent in dev
-      const response = await axios.get(`http://localhost:3000/api/wallets/balance`, { headers });
+      const response = await axios.get(`${API_BASE}/balance`, { headers });
       setBalance(response.data.balance);
     } catch (err) {
       console.error("Error fetching balance:", err);
@@ -50,7 +50,7 @@ function Wallet({ user, onLogout }) {
         Authorization: `Bearer ${token}`,
         "x-user-id": String(user.id),
       };
-      const response = await axios.post(`http://localhost:3000/api/wallets/topup`, { amount }, { headers });
+      const response = await axios.post(`${API_BASE}/topup`, { amount }, { headers });
       setBalance(response.data.new_balance);
       setTopupAmount("");
       setMessage("Top up successful!");

@@ -5,6 +5,7 @@ import "./Dashboard.css";
 import swiftPayLogo from "../assets/images/swiftPay.jpg";
 
 const API_BASE = "http://localhost:3000/api";
+const API_TRANSACTION = "http://localhost:3003";
 
 function Dashboard({ user, onLogout }) {
   const [balance, setBalance] = useState(null);
@@ -24,11 +25,11 @@ function Dashboard({ user, onLogout }) {
       };
 
       // Fetch balance
-      const balanceRes = await axios.get(`${API_BASE}/wallets/balance`, { headers });
+      const balanceRes = await axios.get(`${API_BASE}/balance`, { headers });
       setBalance(balanceRes.data.balance);
 
       // Fetch recent transactions
-      const txRes = await axios.get(`${API_BASE}/transactions/history?limit=5`, { headers });
+      const txRes = await axios.get(`${API_TRANSACTION}/history?limit=5`, { headers });
       setRecentTransactions(txRes.data.transactions || []);
     } catch (err) {
       console.error("Error fetching data:", err);
